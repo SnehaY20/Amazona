@@ -13,6 +13,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import winston from "winston/lib/winston/config/index.js";
 
 const port = process.env.PORT || 5000;
+const cors = require('cors');
 
 let logger = log.child({ service: "Amazona" });
 connectDB();
@@ -22,6 +23,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+
+
+app.use(cors());
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
